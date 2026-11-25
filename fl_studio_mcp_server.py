@@ -147,7 +147,17 @@ class FLStudioTrigger:
         """Check if FL Studio is running"""
         try:
             if self.system == "Windows":
-                result = subprocess.run(['tasklist', '/FI', 'IMAGENAME eq FL.exe'],
+                import ctypes
+
+                system_directory = ctypes.create_unicode_buffer(260)
+                length = ctypes.windll.kernel32.GetSystemDirectoryW(
+                    system_directory, len(system_directory)
+                )
+                if not 0 < length < len(system_directory):
+                    return False
+
+                tasklist = Path(system_directory.value) / "tasklist.exe"
+                result = subprocess.run([str(tasklist), '/FI', 'IMAGENAME eq FL.exe'],
                                       capture_output=True, text=True)
                 return 'FL.exe' in result.stdout
             elif self.system == "Darwin":

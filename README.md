@@ -41,17 +41,18 @@ Without these permissions, the auto-trigger cannot send the Cmd+Opt+Y keystroke 
 
 ## Installation
 
-### Quick Start (3 Commands)
+### Quick Start
+
+Install `uv` before running the setup script and make sure it is on `PATH`. On Windows, run the shell scripts from Git Bash.
+
+Clone this repository using the URL in GitHub's **Code** menu, then run these commands from the checkout.
 
 ```bash
-git clone https://github.com/calvinw/fl-studio-mcp.git
-cd fl-studio-mcp
-
-./install_prerequisites.sh    # Install uv and Python environment
+./install_prerequisites.sh   # Set up the Python environment and FL Studio bridge
 ./install_mcp_for_claude.sh   # Register with Claude Code
 ```
 
-**Then restart Claude Code and you're ready to go!**
+To use Codex, install the Codex CLI and run `./install_mcp_for_codex.sh` after the prerequisites. Restart your MCP client after registering the server.
 
 ## Usage
 
@@ -240,7 +241,7 @@ See [CLAUDE.md](CLAUDE.md) for detailed documentation on how the AI assistant us
 /path/to/fl-studio-mcp/
 ├── ComposeWithLLM.pyscript           (source bridge script)
 ├── fl_studio_mcp_server.py            (MCP server with built-in trigger)
-├── install_prerequisites.sh           (install uv & Python environment and piano roll script)
+├── install_prerequisites.sh           (set up the Python environment and piano roll script)
 ├── install_mcp_for_claude.sh          (MCP for Claude Code)
 ├── install_mcp_for_gemini.sh          (MCP for Gemini CLI)
 ├── install_mcp_for_codex.sh           (MCP for Codex)

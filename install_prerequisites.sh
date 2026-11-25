@@ -22,15 +22,13 @@ echo "  PART 1: Installing Python Dependencies"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo
 
-# Check if uv is installed
-if ! command -v uv &> /dev/null; then
-    echo "📦 Installing uv (Python package manager)..."
-    curl -LsSf https://astral.sh/uv/install.sh | sh
-    export PATH="$HOME/.cargo/bin:$PATH"
-    echo "✅ uv installed"
-else
-    echo "✅ uv already installed"
+# Require an existing uv installation.
+if ! command -v uv >/dev/null 2>&1; then
+    echo "Install uv and make sure it is on PATH, then rerun this script." >&2
+    echo "https://docs.astral.sh/uv/getting-started/installation/" >&2
+    exit 1
 fi
+echo "✅ uv is available"
 
 # Create virtual environment and install dependencies
 echo "🐍 Setting up Python environment..."
